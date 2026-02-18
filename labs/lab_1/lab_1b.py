@@ -44,6 +44,7 @@ def request_sanitized_number(prompt: str) -> float:
             return number
         except ValueError:
             print("Invalid input. Please enter a valid number.")
+            
 def main():
     
     print(f"===== Simple Calculator =====")
@@ -54,8 +55,16 @@ def main():
     operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
 
     # Perform the calculation and display the result
-    result = simple_calculator(operation, num1, num2)
-    print(f"The result of {operation}ing {num1} and {num2} is: {result}")
+    while True:
+        try:
+            operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+            result = simple_calculator(operation, num1, num2)
+            print(f"The result of {operation}ing {num1} and {num2} is: {result}")
+            break  # Exit only after success
+
+        except ValueError as e:
+            print(f"Error: {e}")
+            print("Please enter a valid operation.\n")
 
 
 if __name__ == "__main__":
